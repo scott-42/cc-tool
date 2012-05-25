@@ -1,0 +1,88 @@
+cc-tool provides support of Texas Instruments CC Debugger and 
+some evolution boards to program TI 8051-based System-On-Chip devices
+
+The software has been tested on SmartRF05 Evaluation Board only 
+(firmware version: 0005, revision 0009 and 0019)
+Reported corrected working with CC debugegr firmware revision 0025 
+
+In order to work with the board using non-privileged account add this line 
+to udev rules: 
+
+# SmartRF05 Evaluation Board
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16a0", MODE="0666"
+
+# SmartRF04 Evaluation Board
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="11a0", ATTRS{idProduct}=="db20", MODE="0666"
+
+# CC Debugger
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16a2", MODE="0666"
+
+Building from sources was tested on Fedora 13-16, Ubuntu 11.10 
+Packages for building: Ubuntu: libusb-1.0, libboost-all-dev, Fedora: boost-devel, libusb1-devel
+ 
+Currently next chips are supported:
+Supported chips (* - tested):
+CC2540 CC2530* CC2531* CC2533 CC2430 CC2431 CC2510 CC2511* CC1110 CC1111
+
+
+Command line options:
+
+ -h, --help
+	produce help message
+ 
+ -d, --device 'bus_number:device_number'
+	set programmer device usb address. The option is useful if more than one 	
+	debugger connected to the system simultaneously. 
+    
+ -f, --fast                
+	set fast debug interface speed (by default: slow)
+
+ -i, --read-info-page [file_name] 
+	read target info page. If no file-name provided data will be printed to 	
+	console
+
+ -a, --read-mac-address
+	read target's mac address(es)
+
+ -r, --read file_name 
+	read flash memory to the specified file
+
+ -e, --erase               
+	erase flash memory completely and reset lock bits
+
+ -w, --write file_name 
+      write flash memory. Option can be specified several times to build composite 	
+      flash image or apply patches
+
+ -v, --verify            
+	verify flash after writing
+
+ --reset                    
+	perform target reset
+
+ -t, --test               
+	only search for programmer and target and print various information
+
+ -n, --name target_name            
+	specify target name e.g. CC2530 etc. If specified target does not match 	
+	detected one no operation is performed. Option is not required
+
+ -l, --lock lock_data           
+	specify lock data in hex numbers. Lock data size must be exactly 
+	1 byte (2 	hex digits) or 16 bytes (32 hex digits) depend on target. 
+	For several	targets lock data can be placed into flash image file
+
+'file_name' format: [path\]file_name[,[format][,offset]]
+format can be 'hex' (Intel hex) or 'binary'. Format field can be omitted if file 
+extension is hex or bin. Offset value (in decimal) is an absolute target flash 
+address and is supported only for binary files and only for write operation. 
+
+Examples:
+
+cc_tool --name cc2530 --write image.hex --write patch.bin,,80
+cc_tool --read image.bin
+
+Verification is implemented by calculating crc-16 of 1 Kb flash blocks by means 
+of target itself. After writing is completed target is configured to calculate 
+CRC-16 over own flash and send out results to the cc-tool where it is compared 
+to the input flash image. This method is much faster against read out all flash data.
