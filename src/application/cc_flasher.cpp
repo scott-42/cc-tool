@@ -341,8 +341,13 @@ void CC_Flasher::task_read_mac_address()
 				std::cout << ":";
 		}
 		
-		std::cout << ", secondary: "
-				<< binary_to_hex(&mac1[0], mac1.size(), ":") << "\n";
+		std::cout << ", secondary: ";
+		for(char x = mac1.size() - 1; x >= 0; --x) {
+			std::cout << binary_to_hex(&mac1[x], 1, ":");
+			if (x > 0)
+				std::cout << ":";
+		}
+		std::cout << "\n";
 	}
 }
 

@@ -149,7 +149,7 @@ void CC_253x_2540::mac_address_read(size_t index, ByteVector &mac_address)
 	if (index == 1)
 	{
 		size_t size = unit_info_.ID == 0x2540 ? 6 : 8;
-		size_t offset = unit_info_.flash_page_size * 1024 - LOCK_DATA_SIZE - size;
+		size_t offset = unit_info_.flash_size * 1024 - LOCK_DATA_SIZE - size;
 
 		flash_read_start();
 		flash_read_block(offset, size, mac_address);
