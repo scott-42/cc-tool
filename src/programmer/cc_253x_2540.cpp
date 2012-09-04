@@ -145,6 +145,8 @@ void CC_253x_2540::mac_address_read(size_t index, ByteVector &mac_address)
 			read_xdata_memory(0x780E, 8, mac_address);
 		else
 			read_xdata_memory(0x780E, 6, mac_address);
+
+		mac_address_write(mac_address);
 	}
 	if (index == 1)
 	{
@@ -159,7 +161,14 @@ void CC_253x_2540::mac_address_read(size_t index, ByteVector &mac_address)
 
 //==============================================================================
 void CC_253x_2540::mac_address_write(ByteVector &mac_address)
-{ }
+{ 
+	size_t size = unit_info_.ID == 0x2540 ? 6 : 8;
+	size_t offset = unit_info_.flash_size * 1024 - LOCK_DATA_SIZE - size;
+	DataSection section(offset, mac_address);
+	DataSectionStore store;
+	store.add_section(section, true);
+	write_flash_slow(store);
+}
 
 //==============================================================================
 bool CC_253x_2540::erase_check_comleted()
