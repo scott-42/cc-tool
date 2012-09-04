@@ -14652,7 +14652,7 @@ rm -f core conftest.err conftest_ipa8_conftest.oo \
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$boost_cv_lib_system" = xyes; then
-        boost_cv_lib_system_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
+        boost_cv_lib_system_LDFLAGS="-L$boost_ldpath"
         boost_cv_lib_system_LDPATH="$boost_ldpath"
         break 6
       else
@@ -14875,7 +14875,7 @@ rm -f core conftest.err conftest_ipa8_conftest.oo \
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$boost_cv_lib_filesystem" = xyes; then
-        boost_cv_lib_filesystem_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
+        boost_cv_lib_filesystem_LDFLAGS="-L$boost_ldpath"
         boost_cv_lib_filesystem_LDPATH="$boost_ldpath"
         break 6
       else
@@ -15099,7 +15099,7 @@ rm -f core conftest.err conftest_ipa8_conftest.oo \
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$boost_cv_lib_program_options" = xyes; then
-        boost_cv_lib_program_options_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
+        boost_cv_lib_program_options_LDFLAGS="-L$boost_ldpath"
         boost_cv_lib_program_options_LDPATH="$boost_ldpath"
         break 6
       else
@@ -15317,7 +15317,7 @@ rm -f core conftest.err conftest_ipa8_conftest.oo \
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$boost_cv_lib_system" = xyes; then
-        boost_cv_lib_system_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
+        boost_cv_lib_system_LDFLAGS="-L$boost_ldpath"
         boost_cv_lib_system_LDPATH="$boost_ldpath"
         break 6
       else
@@ -15535,7 +15535,7 @@ rm -f core conftest.err conftest_ipa8_conftest.oo \
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$boost_cv_lib_regex" = xyes; then
-        boost_cv_lib_regex_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
+        boost_cv_lib_regex_LDFLAGS="-L$boost_ldpath"
         boost_cv_lib_regex_LDPATH="$boost_ldpath"
         break 6
       else

@@ -1,0 +1,9 @@
+*.o
+.deps
+.dirstamp
+/src/Makefile
+/config.log
+/config.status
+/libtool
+/Makefile
+/src/cc-tool
