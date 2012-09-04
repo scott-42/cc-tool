@@ -334,9 +334,14 @@ void CC_Flasher::task_read_mac_address()
 		ByteVector mac1;
 		programmer_.unit_mac_address_read(1, mac1);
 
-		std::cout << "  MAC addresses, primary: "
-				<< binary_to_hex(&mac0[0], mac0.size(), ":")
-				<< ", secondary: "
+		std::cout << "  MAC addresses, primary: ";
+		for(char x = mac0.size() - 1; x >= 0; --x) {
+			std::cout << binary_to_hex(&mac0[x], 1, ":");
+			if (x > 0)
+				std::cout << ":";
+		}
+		
+		std::cout << ", secondary: "
 				<< binary_to_hex(&mac1[0], mac1.size(), ":") << "\n";
 	}
 }
