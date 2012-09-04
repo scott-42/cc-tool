@@ -144,7 +144,7 @@ void CC_253x_2540::mac_address_read(size_t index, ByteVector &mac_address)
 		if (unit_info_.ID != 0x2540)
 			read_xdata_memory(0x780E, 8, mac_address);
 		else
-			read_xdata_memory(0x780C, 6, mac_address);
+			read_xdata_memory(0x780E, 6, mac_address);
 	}
 	if (index == 1)
 	{
