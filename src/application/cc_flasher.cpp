@@ -156,7 +156,7 @@ void CC_Flasher::init_options(po::options_description &desc)
 
 	desc.add_options()
 		("write,w", po::value<StringVector>(),
-				"write flash memory. Option can be specified several times.");
+				"write flash memory.");
 
 	desc.add_options()
 		("verify,v", po::value<String>(&option_verify_type_)->implicit_value(""),
@@ -326,8 +326,8 @@ void CC_Flasher::task_read_mac_address()
 
 	if (unit_info_.mac_address_count == 1)
 	{
-		std::cout << "  MAC address: " << binary_to_hex(&mac0[0], mac0.size(), ":")
-			<< "\n";
+		std::cout << "  MAC address: "
+				<< binary_to_hex(&mac0[0], mac0.size(), ":") << "\n";
 	}
 	else
 	{

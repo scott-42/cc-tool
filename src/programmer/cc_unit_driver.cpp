@@ -510,7 +510,7 @@ void CC_UnitDriver::write_flash_slow(const DataSectionStore &section_store)
 
 	ByteVector data;
 	section_store.create_image(0xFF, data);
-	data.resize((section_store.upper_address() + (WRITE_BLOCK_SIZE- 1)) &
+	data.resize((section_store.upper_address() + (WRITE_BLOCK_SIZE - 1)) &
 			~(WRITE_BLOCK_SIZE - 1), 0xFF);
 
 	pw_.write_start(data.size());

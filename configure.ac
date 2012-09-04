@@ -1,10 +1,10 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(cc-tool, 0.16, george-u@yandex.com)
+AC_INIT(cc-tool, 0.18, george-u@yandex.com)
 
 # AC_CANONICAL_SYSTEM
-AM_INIT_AUTOMAKE(cc-tool, 0.16)
+AM_INIT_AUTOMAKE(cc-tool, 0.18)
 
 AC_PROG_LIBTOOL
 AC_PROG_CXX

@@ -1,10 +1,10 @@
 /*
- * File			: version.h
- * Last changed	: $Date: 2011-12-13 01:50:21 +0400 (Tue, 13 Dec 2011) $
- * Revision		: $Rev: 189 $
+ * version.h
  *
- * Author		: George Stark <george-u@yandex.com>
- * License		: GNU GPL v2
+ * Created on: Jul 28, 2011
+ *     Author: George Stark <george-u@yandex.com>
+ *
+ * License: GNU GPL v2
  *
  */
 
@@ -14,7 +14,7 @@
 #include "common.h"
 
 const uint_t VERSION_MAJOR	= 0;
-const uint_t VERSION_MINOR	= 16;
+const uint_t VERSION_MINOR	= 18;
 
 const char MODULE_NAME[]		= "cc-tool";
 const char MODULE_DESCRIPTION[]	= "Texas Instruments 8051-based System-On-Chip devices programmer using TI CC Debugger";

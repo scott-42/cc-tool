@@ -59,7 +59,7 @@ void CC_243x::find_unit_info(UnitInfo &unit_info)
 	unit_info.flags = UnitInfo::SUPPORT_MAC_ADDRESS;
 	unit_info.lock_size = 1;
 	unit_info.max_flash_size = 128;
-	unit_info.flash_page_size = 2048;
+	unit_info.flash_page_size = 2;
 	unit_info.mac_address_count = 1;
 
 	ByteVector sfr;

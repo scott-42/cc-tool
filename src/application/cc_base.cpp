@@ -67,14 +67,11 @@ static void print_usage(const po::options_description &desc)
 void CC_Base::init_options(po::options_description &desc)
 {
 	desc.add_options()
-        ("load", po::value<std::vector<std::string> >(), "load firmware image ");
-
-	desc.add_options()
 		("help,h", "produce help message");
 
 	desc.add_options()
 		("log", po::value<String>(&option_log_name_)->implicit_value(""),
-				"create in the current directory log of all operations");
+				"create log of all operations");
 
 	desc.add_options()
 		("device,d", po::value<String>(&option_device_address_),
@@ -201,14 +198,10 @@ bool CC_Base::execute(int argc, char *argv[])
 	po::options_description desc;
 	init_options(desc);
 
-	po::positional_options_description pd;
-	pd.add("input-file", 1);
-
 	try
 	{
 		po::variables_map vm;
-		po::parsed_options parsed = po::command_line_parser(argc, argv).options(desc).allow_unregistered().positional(pd).run();
-		po::store(parsed, vm);
+		po::store(po::parse_command_line(argc, argv, desc), vm);
 		po::notify(vm);
 
 		if (vm.count("log"))
@@ -223,6 +216,7 @@ bool CC_Base::execute(int argc, char *argv[])
 			process_tasks();
 			log_info("main, finish task processing");
 			programmer_.unit_close();
+			return true;
 		}
 	}
 	catch (std::runtime_error& e) // usb, file error

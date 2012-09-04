@@ -15,4 +15,7 @@
 03/12/2012 version 0.16
 	* fixed CC debugger device USB PID value
 
+06/06/2012 version 0.18
+	* fixed wrong CC111x identification
+	* added reference in linux man pages format
 

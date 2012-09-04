@@ -14,7 +14,6 @@
 int main(int argc, char **argv)
 {
 	CC_Flasher cc_flasher;
-	cc_flasher.execute(argc, argv);
 
-	return 0;
+	return cc_flasher.execute(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

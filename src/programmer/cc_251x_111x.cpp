@@ -11,6 +11,9 @@
 #include "cc_251x_111x.h"
 #include "cc_debug_interface.h"
 
+const uint16_t XDATA_RAM_OFFSET	= 0xF000;
+const uint16_t XDATA_SFR_OFFSET	= 0xDF00;
+
 //==============================================================================
 CC_251x_111x::CC_251x_111x(USB_Device &programmer, ProgressWatcher &pw) :
 		CC_UnitDriver(programmer, pw)
@@ -21,8 +24,9 @@ CC_251x_111x::CC_251x_111x(USB_Device &programmer, ProgressWatcher &pw) :
 	reg_info.verify_block_size	= 512;
 	reg_info.write_block_size	= 512;
 	reg_info.xbank_offset		= 0;
-	reg_info.dma0_cfg_offset	= 0xFF00;
-	reg_info.dma_data_offset	= 0xF000;
+
+	reg_info.dma0_cfg_offset	= XDATA_RAM_OFFSET + 0x0F00;
+	reg_info.dma_data_offset	= XDATA_RAM_OFFSET + 0x0000;
 
 	reg_info.rndh		= 0xDFBD;
 	reg_info.rndl		= 0xDFBC;
@@ -46,8 +50,8 @@ void CC_251x_111x::supported_units(Unit_ID_List &units)
 {
 	units.push_back(Unit_ID(0x2510, "CC2510"));
 	units.push_back(Unit_ID(0x2511, "CC2511"));
-	units.push_back(Unit_ID(0x1111, "CC1110"));
-	units.push_back(Unit_ID(0x1110, "CC1111"));
+	units.push_back(Unit_ID(0x1111, "CC1111"));
+	units.push_back(Unit_ID(0x1110, "CC1110"));
 }
 
 //==============================================================================
@@ -55,8 +59,9 @@ void CC_251x_111x::find_unit_info(UnitInfo &unit_info)
 {
 	unit_info.lock_size = 1;
 	unit_info.max_flash_size = 32;
-	unit_info.flash_page_size = 1024;
+	unit_info.flash_page_size = 1;
 	unit_info.mac_address_count = 1;
+	unit_info.flags = UnitInfo::SUPPORT_INFO_PAGE;
 
 	ByteVector sfr;
 
