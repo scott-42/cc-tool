@@ -73,6 +73,7 @@ dnl everything else.
 dnl Cannot use 'dnl' after [$4] because a trailing dnl may break AC_CACHE_CHECK
 (eval "$ac_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD |
   tr -d '\r' |
+  tail -n 1 |
   $SED -n -e "$1" >conftest.i 2>&1],
   [$3],
   [$4])
@@ -206,14 +207,14 @@ AC_LANG_POP([C++])dnl
   AC_CACHE_CHECK([for Boost's header version],
     [boost_cv_lib_version],
     [m4_pattern_allow([^BOOST_LIB_VERSION$])dnl
-     _BOOST_SED_CPP([/^boost-lib-version = /{s///;s/\"//g;p;q;}],
+     _BOOST_SED_CPP([s/ //g;s/\"//g;p],
                     [#include <boost/version.hpp>
 boost-lib-version = BOOST_LIB_VERSION],
     [boost_cv_lib_version=`cat conftest.i`])])
     # e.g. "134" for 1_34_1 or "135" for 1_35
     boost_major_version=`echo "$boost_cv_lib_version" | sed 's/_//;s/_.*//'`
     case $boost_major_version in #(
-      '' | *[[!0-9]]*)
+      '')
         AC_MSG_ERROR([invalid value: boost_major_version=$boost_major_version])
         ;;
     esac
